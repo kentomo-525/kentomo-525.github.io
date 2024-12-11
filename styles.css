@@ -1,0 +1,100 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fff0f5;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    font-family: 'Pacifico', cursive;
+    color: #ff69b4;
+    text-align: center;
+}
+
+.contact-bg {
+    background-image: url('background.jpeg'); /* 結婚式らしい背景画像を設定 */
+    background-size: cover;
+    padding: 50px 0;
+}
+
+.contact-area {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contact-message {
+    text-align: center;
+    color: #555;
+}
+
+.contact-inner {
+    margin-top: 20px;
+}
+
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-list th, .table-list td {
+    padding: 10px;
+}
+
+.table-list th {
+    width: 30%;
+    text-align: left;
+    vertical-align: top;
+}
+
+.input-area {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button, .back-button {
+    display: inline-block;
+    width: 45%;
+    margin: 10px 2.5%;
+    padding: 12px;
+    background-color: #ff69b4;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover, .back-button:hover {
+    background-color: #ff1493;
+}
+
+.essential {
+    color: red;
+    font-size: 14px;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.button-area {
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .contact-area {
+        width: 95%;
+    }
+    .submit-button, .back-button {
+        width: 90%;
+        margin: 10px 5%;
+    }
+}
