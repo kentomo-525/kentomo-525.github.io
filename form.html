@@ -1,4 +1,3 @@
-<!-- form.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -50,40 +49,28 @@
                         </tr>
                         <tr class="table-list">
                             <th>
-                                <!-- アレルギーも必須と明示 -->
-                                <label for="allergies">アレルギー<span class="essential">必須</span></label>
+                                <label for="tel">電話番号<span class="essential">必須</span></label>
                             </th>
                             <td>
-                                <p>以下から該当するものを全てお選びください:</p>
-                                <label><input type="checkbox" name="allergies" value="アレルギーはありません">アレルギーはありません</label><br>
-                                <label><input type="checkbox" name="allergies" value="卵">卵</label><br>
-                                <label><input type="checkbox" name="allergies" value="乳">乳</label><br>
-                                <label><input type="checkbox" name="allergies" value="小麦">小麦</label><br>
-                                <label><input type="checkbox" name="allergies" value="そば">そば</label><br>
-                                <label><input type="checkbox" name="allergies" value="落花生">落花生</label><br>
-                                <label><input type="checkbox" name="allergies" value="えび">えび</label><br>
-                                <label><input type="checkbox" name="allergies" value="かに">かに</label><br>
-                                <label><input type="checkbox" name="allergies" value="__other_option__" id="otherOptionCheckbox">その他</label><br>
-                                <input type="text" name="otherAllergy" id="otherAllergy" placeholder="その他アレルギーがある場合はご記入ください" class="input-area" style="display:none;">
-                                
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const otherCheckbox = document.getElementById('otherOptionCheckbox');
-                                        const otherAllergyField = document.getElementById('otherAllergy');
-                                    
-                                        function toggleOtherField() {
-                                            if (otherCheckbox.checked) {
-                                                otherAllergyField.style.display = 'block';
-                                            } else {
-                                                otherAllergyField.style.display = 'none';
-                                                otherAllergyField.value = '';
-                                            }
-                                        }
-                                    
-                                        otherCheckbox.addEventListener('change', toggleOtherField);
-                                        toggleOtherField();
-                                    });
-                                </script>
+                                <input type="text" name="tel" id="tel" placeholder="例: 03-1234-5678" class="input-area" required>
+                            </td>
+                        </tr>
+
+                        <!-- 前泊予定、送迎に関する注意書き -->
+                        <tr class="table-list">
+                            <th>前泊予定</th>
+                            <td>
+                                <p class="note">（現時点でのご予定で結構です）</p>
+                                <label><input type="radio" name="stay" value="あり">あり</label><br>
+                                <label><input type="radio" name="stay" value="なし">なし</label>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>送迎</th>
+                            <td>
+                                <p class="note">（現時点でのご予定で結構です）<br>送迎は「広島駅〜会場の往復」を想定しています。</p>
+                                <label><input type="radio" name="transfer" value="希望する">希望する</label><br>
+                                <label><input type="radio" name="transfer" value="希望しない">希望しない</label>
                             </td>
                         </tr>
                         <tr class="table-list">
@@ -114,25 +101,179 @@
                                     </div>
                                     <div class="gift-card">
                                         <label for="giftC" class="gift-label">
-                                            <input type="radio" name="gift" id="giftC" value="お肉のカタログギフト">
+                                            <input type="radio" name="gift" id="giftC" value="カタログギフト">
                                             <div class="gift-content">
-                                                <h3 class="gift-title">お肉のカタログギフト</h3>
-                                                <img src="giftC.jpg" alt="お肉のカタログギフト" class="gift-image">
-                                                <p class="gift-note">選りすぐりのブランド肉</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="gift-card">
-                                        <label for="giftD" class="gift-label">
-                                            <input type="radio" name="gift" id="giftD" value="なんでもカタログギフト">
-                                            <div class="gift-content">
-                                                <h3 class="gift-title">なんでもカタログギフト</h3>
-                                                <img src="giftD.jpg" alt="なんでもカタログギフト" class="gift-image">
+                                                <h3 class="gift-title">カタログギフト</h3>
+                                                <img src="giftC.jpg" alt="カタログギフト" class="gift-image">
                                                 <p class="gift-note">多彩な品から選べます</p>
                                             </div>
                                         </label>
                                     </div>
                                 </div>
+                            </td>
+                        </tr>
+                        <!-- 代表者アレルギー -->
+                        <tr class="table-list">
+                            <th>
+                                <label for="allergies">アレルギー(代表者)<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies" value="__other_option__" id="otherOptionCheckbox">その他</label><br>
+                                <input type="text" name="otherAllergy" id="otherAllergy" placeholder="その他アレルギーがある場合はご記入ください" class="input-area" style="display:none;">
+                            </td>
+                        </tr>
+
+                        <!-- 家族情報(2～6) -->
+                        <!-- フィールドセットで囲むことで、数字でグループ分けをわかりやすく -->
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th colspan="2"><strong>家族2</strong></th>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th><label for="name2">お名前2</label></th>
+                            <td><input type="text" name="name2" id="name2" placeholder="ご家族2人目のお名前（任意）" class="input-area"></td>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th>アレルギー2</th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies2" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies2" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies2" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies2" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies2" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies2" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies2" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies2" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies2" value="__other_option__" class="otherOptionCheckbox2">その他</label><br>
+                                <input type="text" name="otherAllergy2" class="otherAllergyInput2 input-area" placeholder="その他アレルギー" style="display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th colspan="2"><strong>家族3</strong></th>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th><label for="name3">お名前3</label></th>
+                            <td><input type="text" name="name3" id="name3" placeholder="ご家族3人目のお名前（任意）" class="input-area"></td>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th>アレルギー3</th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies3" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies3" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies3" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies3" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies3" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies3" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies3" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies3" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies3" value="__other_option__" class="otherOptionCheckbox3">その他</label><br>
+                                <input type="text" name="otherAllergy3" class="otherAllergyInput3 input-area" placeholder="その他アレルギー" style="display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th colspan="2"><strong>家族4</strong></th>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th><label for="name4">お名前4</label></th>
+                            <td><input type="text" name="name4" id="name4" placeholder="ご家族4人目のお名前（任意）" class="input-area"></td>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th>アレルギー4</th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies4" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies4" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies4" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies4" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies4" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies4" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies4" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies4" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies4" value="__other_option__" class="otherOptionCheckbox4">その他</label><br>
+                                <input type="text" name="otherAllergy4" class="otherAllergyInput4 input-area" placeholder="その他アレルギー" style="display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th colspan="2"><strong>家族5</strong></th>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th><label for="name5">お名前5</label></th>
+                            <td><input type="text" name="name5" id="name5" placeholder="ご家族5人目のお名前（任意）" class="input-area"></td>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th>アレルギー5</th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies5" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies5" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies5" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies5" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies5" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies5" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies5" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies5" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies5" value="__other_option__" class="otherOptionCheckbox5">その他</label><br>
+                                <input type="text" name="otherAllergy5" class="otherAllergyInput5 input-area" placeholder="その他アレルギー" style="display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th colspan="2"><strong>家族6</strong></th>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th><label for="name6">お名前6</label></th>
+                            <td><input type="text" name="name6" id="name6" placeholder="ご家族6人目のお名前（任意）" class="input-area"></td>
+                        </tr>
+                        <tr class="table-list family-section">
+                            <th>アレルギー6</th>
+                            <td>
+                                <p>該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies6" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies6" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies6" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies6" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies6" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies6" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies6" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies6" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies6" value="__other_option__" class="otherOptionCheckbox6">その他</label><br>
+                                <input type="text" name="otherAllergy6" class="otherAllergyInput6 input-area" placeholder="その他アレルギー" style="display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+
+                        <tr class="table-list">
+                            <th>
+                                <label for="cookingNote">料理について</label>
+                            </th>
+                            <td>
+                                <textarea name="cookingNote" id="cookingNote" placeholder="料理に関するご要望・制限など" class="input-area"></textarea>
                             </td>
                         </tr>
                         <tr class="table-list">
@@ -176,12 +317,32 @@
                             <td id="confirmAddress"></td>
                         </tr>
                         <tr class="table-list">
-                            <th>アレルギー</th>
-                            <td id="confirmAllergies"></td>
+                            <th>電話番号</th>
+                            <td id="confirmTel"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>前泊予定</th>
+                            <td id="confirmStay"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>送迎</th>
+                            <td id="confirmTransfer"></td>
                         </tr>
                         <tr class="table-list">
                             <th>引き出物選択</th>
                             <td id="confirmGift"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>アレルギー(代表者)</th>
+                            <td id="confirmAllergies"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>ご家族情報</th>
+                            <td id="confirmFamily"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>料理について</th>
+                            <td id="confirmCookingNote"></td>
                         </tr>
                         <tr class="table-list">
                             <th>備考</th>
@@ -199,13 +360,20 @@
     </form>
 
     <!-- サンクスページへのリダイレクト設定 -->
-    <form id="hiddenForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSerppuex1O3qbWv__qlUvHfYkXyzZFNf_4hT3n1MOBEuqXylw/formResponse" method="POST" target="hidden_iframe" style="display: none;">
+    <form id="hiddenForm" action="https://docs.google.com/forms/u/0/d/e/xxxxx/formResponse" method="POST" target="hidden_iframe" style="display: none;">
         <input type="hidden" name="entry.2144289705" id="hiddenName">
         <input type="hidden" name="entry.575672970" id="hiddenZipcode">
         <input type="hidden" name="entry.823249746" id="hiddenAddress">
+        <input type="hidden" name="entry.xxxxxxxx" id="hiddenTel">
+        <input type="hidden" name="entry.xxxxxxxx" id="hiddenStay">
+        <input type="hidden" name="entry.xxxxxxxx" id="hiddenTransfer">
+        <input type="hidden" name="entry.xxxxxxxx" id="hiddenGift">
         <div id="hiddenAllergiesContainer"></div>
-        <input type="hidden" name="entry.1146449488.other_option_response" id="hiddenOtherAllergy">
-        <input type="hidden" name="entry.1079425210" id="hiddenGift">
+        <input type="hidden" name="entry.xxxxxxxx.other_option_response" id="hiddenOtherAllergy">
+        
+        <div id="hiddenFamilyContainer"></div>
+
+        <input type="hidden" name="entry.xxxxxxxx" id="hiddenCookingNote">
         <input type="hidden" name="entry.1892194697" id="hiddenNote">
     </form>
 
@@ -214,19 +382,91 @@
     <script>
         let submitted = false;
 
+        function setupOtherAllergyField(checkboxClass, inputClass) {
+            const checkboxes = document.querySelectorAll('.' + checkboxClass);
+            const input = document.querySelector('.' + inputClass);
+
+            function toggleOtherField() {
+                let anyChecked = false;
+                checkboxes.forEach(chk => {
+                    if (chk.checked) anyChecked = true;
+                });
+                if (anyChecked) {
+                    input.style.display = 'block';
+                } else {
+                    input.style.display = 'none';
+                    input.value = '';
+                }
+            }
+
+            checkboxes.forEach(chk => {
+                chk.addEventListener('change', toggleOtherField);
+            });
+            toggleOtherField();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 代表者その他
+            const otherCheckbox = document.getElementById('otherOptionCheckbox');
+            const otherAllergyField = document.getElementById('otherAllergy');
+            function toggleOtherField() {
+                if (otherCheckbox.checked) {
+                    otherAllergyField.style.display = 'block';
+                } else {
+                    otherAllergyField.style.display = 'none';
+                    otherAllergyField.value = '';
+                }
+            }
+            otherCheckbox.addEventListener('change', toggleOtherField);
+            toggleOtherField();
+
+            // 家族2～6のその他アレルギー
+            setupOtherAllergyField('otherOptionCheckbox2', 'otherAllergyInput2');
+            setupOtherAllergyField('otherOptionCheckbox3', 'otherAllergyInput3');
+            setupOtherAllergyField('otherOptionCheckbox4', 'otherAllergyInput4');
+            setupOtherAllergyField('otherOptionCheckbox5', 'otherAllergyInput5');
+            setupOtherAllergyField('otherOptionCheckbox6', 'otherAllergyInput6');
+        });
+
         document.getElementById('confirmButton').addEventListener('click', function() {
             document.getElementById('errorMessages').innerHTML = '';
 
             let name = document.getElementById('name').value.trim();
             let zipcode = document.getElementById('zipcode').value.trim();
             let address = document.getElementById('address').value.trim();
+            let tel = document.getElementById('tel').value.trim();
             
+            let stay = document.querySelector('input[name="stay"]:checked');
+            let transfer = document.querySelector('input[name="transfer"]:checked');
+            let gift = document.querySelector('input[name="gift"]:checked');
+            let note = document.getElementById('note').value.trim();
+            let cookingNote = document.getElementById('cookingNote').value.trim();
+
+            // 代表者アレルギー
             let allergyElements = document.querySelectorAll('input[name="allergies"]:checked');
             let allergies = Array.from(allergyElements).map(el => el.value);
             let otherAllergy = document.getElementById('otherAllergy').value.trim();
 
-            let gift = document.querySelector('input[name="gift"]:checked');
-            let note = document.getElementById('note').value.trim();
+            // 家族情報
+            let familyData = [];
+            for (let i = 2; i <= 6; i++) {
+                let fname = document.getElementById('name' + i)?.value.trim() || '';
+                let fallergyEls = document.querySelectorAll('input[name="allergies' + i + '"]:checked');
+                let fallergies = Array.from(fallergyEls).map(el => el.value);
+                let fotherAllergy = document.querySelector('.otherAllergyInput' + i)?.value.trim() || '';
+
+                if (!fallergies.includes('アレルギーはありません') && fallergies.includes('__other_option__') && fotherAllergy) {
+                    fallergies = fallergies.filter(a => a !== '__other_option__');
+                    fallergies.push(fotherAllergy);
+                } else {
+                    fallergies = fallergies.filter(a => a !== '__other_option__');
+                }
+
+                familyData.push({
+                    name: fname,
+                    allergies: fallergies
+                });
+            }
 
             let errors = [];
 
@@ -250,13 +490,17 @@
                 errors.push('住所を入力してください。');
             }
 
+            if (!tel) {
+                errors.push('電話番号を入力してください。');
+            }
+
             if (!gift) {
                 errors.push('引き出物を選択してください。');
             }
 
-            // アレルギーバリデーション
+            // アレルギーバリデーション(代表者)
             if (allergies.length === 0) {
-                errors.push('アレルギーについて、いずれかを選択してください。');
+                errors.push('代表者のアレルギーについて、いずれかを選択してください。');
             } else {
                 if (allergies.includes('アレルギーはありません') && allergies.length > 1) {
                     errors.push('「アレルギーはありません」を選択した場合、他のアレルギーは選択できません。');
@@ -276,23 +520,36 @@
                 document.getElementById('errorMessages').innerHTML = errorHTML;
                 document.getElementById('errorMessages').scrollIntoView({behavior: 'smooth'});
             } else {
-                // その他オプション処理
+                // その他オプション処理（代表者）
                 if (!allergies.includes('アレルギーはありません') && allergies.includes('__other_option__')) {
                     allergies = allergies.filter(a => a !== '__other_option__');
                     if (otherAllergy) {
                         allergies.push(otherAllergy);
                     }
                 } else {
-                    // __other_option__があれば除去
                     allergies = allergies.filter(a => a !== '__other_option__');
                 }
 
+                // 確認画面への反映
                 document.getElementById('confirmName').innerText = name;
                 document.getElementById('confirmZipcode').innerText = zipcode;
                 document.getElementById('confirmAddress').innerText = address;
+                document.getElementById('confirmTel').innerText = tel;
+                document.getElementById('confirmStay').innerText = stay ? stay.value : '未選択';
+                document.getElementById('confirmTransfer').innerText = transfer ? transfer.value : '未選択';
                 document.getElementById('confirmAllergies').innerText = (allergies.length > 0) ? allergies.join('、') : 'なし';
                 document.getElementById('confirmGift').innerText = gift.value;
+                document.getElementById('confirmCookingNote').innerText = cookingNote || 'なし';
                 document.getElementById('confirmNote').innerText = note ? note : 'なし';
+
+                let familyHTML = '';
+                familyData.forEach((f, idx) => {
+                    if (f.name || f.allergies.length > 0) {
+                        familyHTML += '<p><strong>家族' + (idx+2) + ':</strong> ' + (f.name || '（名称未入力）') + '<br>アレルギー: ' + (f.allergies.length > 0 ? f.allergies.join('、') : 'なし') + '</p>';
+                    }
+                });
+                if (!familyHTML) familyHTML = 'なし';
+                document.getElementById('confirmFamily').innerHTML = familyHTML;
 
                 document.getElementById('surveyForm').style.display = 'none';
                 document.getElementById('confirmArea').style.display = 'block';
@@ -307,12 +564,22 @@
         document.getElementById('submitButton').addEventListener('click', function() {
             submitted = true;
 
-            // 送信前にhiddenAllergiesContainerをクリア
+            // 送信前にhiddenAllergiesContainerとhiddenFamilyContainerをクリア
             document.getElementById('hiddenAllergiesContainer').innerHTML = '';
+            document.getElementById('hiddenFamilyContainer').innerHTML = '';
 
             document.getElementById('hiddenName').value = document.getElementById('name').value.trim();
             document.getElementById('hiddenZipcode').value = document.getElementById('zipcode').value.trim();
             document.getElementById('hiddenAddress').value = document.getElementById('address').value.trim();
+            document.getElementById('hiddenTel').value = document.getElementById('tel').value.trim();
+            let stay = document.querySelector('input[name="stay"]:checked');
+            document.getElementById('hiddenStay').value = stay ? stay.value : '';
+            let transfer = document.querySelector('input[name="transfer"]:checked');
+            document.getElementById('hiddenTransfer').value = transfer ? transfer.value : '';
+
+            document.getElementById('hiddenGift').value = document.querySelector('input[name="gift"]:checked').value;
+            document.getElementById('hiddenNote').value = document.getElementById('note').value.trim();
+            document.getElementById('hiddenCookingNote').value = document.getElementById('cookingNote').value.trim();
 
             let allergyElements = document.querySelectorAll('input[name="allergies"]:checked');
             let otherAllergyValue = document.getElementById('otherAllergy').value.trim();
@@ -325,10 +592,9 @@
                 } else if (el.value === 'アレルギーはありません') {
                     hasNoAllergy = true;
                 } else {
-                    // その他以外の選択肢
                     let hiddenInput = document.createElement('input');
                     hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'entry.1146449488';
+                    hiddenInput.name = 'entry.1146449488'; // 必要に応じてentryID修正
                     hiddenInput.value = el.value;
                     document.getElementById('hiddenAllergiesContainer').appendChild(hiddenInput);
                 }
@@ -356,8 +622,35 @@
                 }
             }
 
-            document.getElementById('hiddenGift').value = document.querySelector('input[name="gift"]:checked').value;
-            document.getElementById('hiddenNote').value = document.getElementById('note').value.trim();
+            for (let i = 2; i <= 6; i++) {
+                let fname = document.getElementById('name' + i)?.value.trim() || '';
+                let fallergyEls = document.querySelectorAll('input[name="allergies' + i + '"]:checked');
+                let fallergies = Array.from(fallergyEls).map(el => el.value);
+                let fotherAllergy = document.querySelector('.otherAllergyInput' + i)?.value.trim() || '';
+
+                if (!fallergies.includes('アレルギーはありません') && fallergies.includes('__other_option__') && fotherAllergy) {
+                    fallergies = fallergies.filter(a => a !== '__other_option__');
+                    fallergies.push(fotherAllergy);
+                } else {
+                    fallergies = fallergies.filter(a => a !== '__other_option__');
+                }
+
+                if (fname || fallergies.length > 0) {
+                    let nameInput = document.createElement('input');
+                    nameInput.type = 'hidden';
+                    nameInput.name = 'entry.xxxxxx_family_name' + i; 
+                    nameInput.value = fname;
+                    document.getElementById('hiddenFamilyContainer').appendChild(nameInput);
+
+                    fallergies.forEach(fa => {
+                        let fallergyInput = document.createElement('input');
+                        fallergyInput.type = 'hidden';
+                        fallergyInput.name = 'entry.xxxxxx_family_allergy' + i; 
+                        fallergyInput.value = fa;
+                        document.getElementById('hiddenFamilyContainer').appendChild(fallergyInput);
+                    });
+                }
+            }
 
             document.getElementById('hiddenForm').submit();
         });

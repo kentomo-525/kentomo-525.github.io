@@ -1,3 +1,4 @@
+/* style.css */
 body {
     font-family: 'Noto Sans JP', sans-serif;
     background-color: #fff0f5;
@@ -13,16 +14,16 @@ body {
 
 .contact-bg {
     background-image: url('background.jpeg');
-    background-size: contain; /* 画像全体が表示されるように */
-    background-position: center; /* 中央配置 */
-    background-repeat: no-repeat; /* 繰り返しなし */
-    background-attachment: fixed; /* スクロールしても固定 */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
     padding: 50px 0;
 }
 
 .contact-area {
     width: 90%;
-    max-width: 600px;
+    max-width: 700px; /* 幅を広めに変更 */
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -45,6 +46,7 @@ body {
 
 .table-list th, .table-list td {
     padding: 10px;
+    vertical-align: top;
 }
 
 .table-list th {
@@ -92,60 +94,15 @@ body {
     text-align: center;
 }
 
-.slideshow-container {
-    position: relative;
-    width: 100%;
-    height: 300px; 
-    overflow: hidden;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.slideshow-image {
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    max-width: 100%;
-    height: 300px;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 1s ease; /* フェードアニメーション */
-}
-
-.slideshow-image.active {
-    opacity: 1;
-}
-
-.submit-button-fam {
-    display: inline-block;
-    width: 45%;
-    margin: 10px 2.5%;
-    padding: 12px;
-    background-color: #48a1f4;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.submit-button-fam:hover, .back-button:hover {
-    background-color: #0037ff;
-}
-
-@media screen and (max-width: 480px) {
-    .contact-area {
-        width: 95%;
-    }
-    .submit-button, .back-button, .submit-button-fam {
-        width: 90%;
-        margin: 10px 5%;
-    }
+.note {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
 }
 
 .gift-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2列表示 */
+    grid-template-columns: 1fr 1fr 1fr; 
     gap: 20px;
     margin-top: 20px;
 }
@@ -170,7 +127,6 @@ body {
 }
 
 .gift-label input[type="radio"] {
-    /* ラジオボタンを非表示にして、カード全体をクリック可能にする */
     position: absolute;
     opacity: 0;
     width: 0;
@@ -179,7 +135,7 @@ body {
 
 .gift-label input[type="radio"]:focus + .gift-content,
 .gift-label input[type="radio"]:checked + .gift-content {
-    outline: 2px solid #ff69b4; /* 選択時やフォーカス時に枠表示など */
+    outline: 2px solid #ff69b4; 
 }
 
 .gift-content {
@@ -206,9 +162,35 @@ body {
     color: #555;
 }
 
-/* 画面が小さい場合は1列表示 */
 @media screen and (max-width: 480px) {
-    .gift-grid {
-        grid-template-columns: 1fr; /* 1列表示 */
+    .contact-area {
+        width: 95%;
     }
+    .submit-button, .back-button {
+        width: 90%;
+        margin: 10px 5%;
+    }
+    .gift-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* 家族情報を区切り線や太字で強調 */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.table-list th[colspan="2"] {
+    background-color: #f2f2f2;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* family-section用のスタイル（必要に応じて調整） */
+.family-section {
+    border-left: 3px solid #ff69b4;
+    background-color: #fffafc;
 }
