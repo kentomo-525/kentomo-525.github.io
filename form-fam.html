@@ -60,15 +60,7 @@
                             </td>
                         </tr>
 
-                        <!-- 引き出物選択（必須） -->
-                        <tr class="table-list">
-                            <th><label for="gift">引き出物選択<span class="essential">必須</span></label></th>
-                            <td>
-                                <label><input type="radio" name="gift" value="瀬戸焼セット">けんちゃん出身！愛知の瀬戸焼セット</label><br>
-                                <label><input type="radio" name="gift" value="今治タオルセット">ともちゃん出身！愛媛の今治タオルセット</label><br>
-                                <label><input type="radio" name="gift" value="カタログギフト">なんでもあります！カタログギフト</label><br>
-                            </td>
-                        </tr>
+                        <!-- ※引き出物選択は削除 -->
 
                         <!-- 代表者アレルギー -->
                         <tr class="table-list">
@@ -137,7 +129,7 @@
                         <tr class="table-list"><th>電話番号</th><td id="confirmTel"></td></tr>
                         <tr class="table-list"><th>前泊予定</th><td id="confirmStay"></td></tr>
                         <tr class="table-list"><th>送迎</th><td id="confirmTransfer"></td></tr>
-                        <tr class="table-list"><th>引き出物選択</th><td id="confirmGift"></td></tr>
+                        <!-- 引き出物行は削除 -->
                         <tr class="table-list"><th>アレルギー(代表者)</th><td id="confirmAllergies"></td></tr>
                         <tr class="table-list"><th>ご家族情報</th><td id="confirmFamily"></td></tr>
                         <tr class="table-list"><th>料理について</th><td id="confirmCookingNote"></td></tr>
@@ -161,7 +153,7 @@
         <input type="hidden" name="entry.1295928437" id="hiddenTel">
         <input type="hidden" name="entry.348142545" id="hiddenStay">
         <input type="hidden" name="entry.168426545" id="hiddenTransfer">
-        <input type="hidden" name="entry.1101638032" id="hiddenGift">
+        <!-- 引き出物関連削除 -->
         <div id="hiddenAllergiesContainer"></div>
         <input type="hidden" name="entry.128487.other_option_response" id="hiddenOtherAllergy">
 
@@ -340,7 +332,6 @@
 
                 let stay = document.querySelector('input[name="stay"]:checked');
                 let transfer = document.querySelector('input[name="transfer"]:checked');
-                let gift = document.querySelector('input[name="gift"]:checked');
                 let note = document.getElementById('note').value.trim();
                 let cookingNote = document.getElementById('cookingNote').value.trim();
 
@@ -358,7 +349,8 @@
                 if (!tel) errors.push('電話番号を入力してください。');
                 if (!stay) errors.push('前泊予定を選択してください。');
                 if (!transfer) errors.push('送迎を選択してください。');
-                if (!gift) errors.push('引き出物を選択してください。');
+
+                // 引き出物に関するエラーチェックは削除
 
                 // 代表者アレルギーチェック
                 if (allergies.length === 0) {
@@ -394,9 +386,6 @@
                         }
                     }
 
-                    // ここでは「__other_option__」は削除せず残しておく
-                    // Googleフォームで「その他」オプションを認識させるため、
-                    // 送信時に__other_option__を送信し、かつ other_option_responseを送るようにする。
                     familyData.push({
                         name: fname,
                         allergies: fallergies,
@@ -412,10 +401,6 @@
                     document.getElementById('errorMessages').innerHTML = errorHTML;
                     document.getElementById('errorMessages').scrollIntoView({behavior: 'smooth'});
                 } else {
-                    // 代表者その他オプション処理
-                    // __other_option__は残して、入力値をother_option_responseにセット
-                    // すでに確認画面には代入済みなので省略
-
                     // 確認画面反映
                     document.getElementById('confirmName').innerText = name;
                     document.getElementById('confirmZipcode').innerText = zipcode;
@@ -423,14 +408,14 @@
                     document.getElementById('confirmTel').innerText = tel;
                     document.getElementById('confirmStay').innerText = stay ? stay.value : '未選択';
                     document.getElementById('confirmTransfer').innerText = transfer ? transfer.value : '未選択';
+
                     if (!allergies.includes('アレルギーはありません') && allergies.includes('__other_option__') && otherAllergy) {
-                        // 表示用に__other_option__を実際の文字列に置き換え
                         let displayAllergies = allergies.map(a => a === '__other_option__' ? otherAllergy : a);
                         document.getElementById('confirmAllergies').innerText = displayAllergies.join('、');
                     } else {
                         document.getElementById('confirmAllergies').innerText = (allergies.length > 0) ? allergies.join('、') : 'なし';
                     }
-                    document.getElementById('confirmGift').innerText = gift ? gift.value : '未選択';
+
                     document.getElementById('confirmCookingNote').innerText = cookingNote || 'なし';
                     document.getElementById('confirmNote').innerText = note ? note : 'なし';
 
@@ -438,7 +423,6 @@
                     familyData.forEach((f, idx) => {
                         if (f.name || f.allergies.length > 0) {
                             let displayAllergies = f.allergies.slice();
-                            // 家族のその他対応：表示時は__other_option__をテキストに置換
                             if (!displayAllergies.includes('アレルギーはありません') && displayAllergies.includes('__other_option__') && f.otherAllergy) {
                                 displayAllergies = displayAllergies.map(a => a === '__other_option__' ? f.otherAllergy : a);
                             }
@@ -461,7 +445,6 @@
             document.getElementById('submitButton').addEventListener('click', function() {
                 submitted = true;
 
-                // 送信前にhiddenAllergiesContainerとhiddenFamilyContainerをクリア
                 document.getElementById('hiddenAllergiesContainer').innerHTML = '';
                 document.getElementById('hiddenFamilyContainer').innerHTML = '';
 
@@ -474,9 +457,6 @@
                 document.getElementById('hiddenStay').value = stay ? stay.value : '';
                 let transfer = document.querySelector('input[name="transfer"]:checked');
                 document.getElementById('hiddenTransfer').value = transfer ? transfer.value : '';
-
-                let gift = document.querySelector('input[name="gift"]:checked');
-                document.getElementById('hiddenGift').value = gift ? gift.value : '';
 
                 document.getElementById('hiddenNote').value = document.getElementById('note').value.trim();
                 document.getElementById('hiddenCookingNote').value = document.getElementById('cookingNote').value.trim();
@@ -509,7 +489,6 @@
                     document.getElementById('hiddenOtherAllergy').value = '';
                 } else {
                     if (hasOther) {
-                        // メイン「その他」選択時は__other_option__を回答として送信
                         let otherOptionInput = document.createElement('input');
                         otherOptionInput.type = 'hidden';
                         otherOptionInput.name = 'entry.128487';
@@ -560,16 +539,13 @@
                                 }
                             });
 
-                            // その他対応
                             if (hasFamilyOther) {
-                                // __other_option__を送信
                                 let otherFamOptionInput = document.createElement('input');
                                 otherFamOptionInput.type = 'hidden';
                                 otherFamOptionInput.name = allergyEntry;
                                 otherFamOptionInput.value = '__other_option__';
                                 document.getElementById('hiddenFamilyContainer').appendChild(otherFamOptionInput);
 
-                                // other_option_responseへテキストを送信
                                 let otherFamResponseInput = document.createElement('input');
                                 otherFamResponseInput.type = 'hidden';
                                 otherFamResponseInput.name = allergyEntry + '.other_option_response';
