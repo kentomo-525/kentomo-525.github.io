@@ -16,8 +16,8 @@
             <div class="contact-area inner">
                 <h1 class="title">アンケート</h1>
                 <p class="contact-message">
-                    以下のアンケートにご協力ください。<br>
-                    <span class="message-notice"><span class="essential">必須</span>は必須項目です。</span>
+                    以下のアンケートにご協力ください <br>
+                    <span class="message-notice"><span class="essential">必須</span>は必須項目です </span>
                 </p>
                 <div class="contact-inner">
                     <!-- エラーメッセージ表示領域 -->
@@ -44,7 +44,7 @@
                         <tr class="table-list">
                             <th>前泊予定<span class="essential">必須</span></th>
                             <td>
-                                <p class="note">現時点でのご予定で結構です。</p>
+                                <p class="note">現時点でのご予定で結構です </p>
                                 <label><input type="radio" name="stay" value="あり">あり</label><br>
                                 <label><input type="radio" name="stay" value="なし">なし</label>
                             </td>
@@ -54,7 +54,7 @@
                         <tr class="table-list">
                             <th>送迎<span class="essential">必須</span></th>
                             <td>
-                                <p class="note">現時点でのご予定で結構です。<br>送迎は「広島駅〜会場の往復」を想定しています。</p>
+                                <p class="note">現時点でのご予定で結構です <br>送迎は「広島駅〜会場の往復」を想定しています </p>
                                 <label><input type="radio" name="transfer" value="希望する">希望する</label><br>
                                 <label><input type="radio" name="transfer" value="希望しない">希望しない</label>
                             </td>
@@ -93,13 +93,13 @@
                         <tr class="table-list">
                             <th><label for="cookingNote">料理について</label></th>
                             <td>
-                                <textarea name="cookingNote" id="cookingNote" placeholder="例: 肉はよく焼き希望、トマトは苦手です、など" class="input-area"></textarea>
+                                <textarea name="cookingNote" id="cookingNote" placeholder="例: 肉はよく焼き希望 トマトは苦手です など" class="input-area"></textarea>
                             </td>
                         </tr>
                         <tr class="table-list">
                             <th><label for="note">備考</label></th>
                             <td>
-                                <textarea name="note" id="note" placeholder="妊娠・授乳中の方はお知らせください。その他なんでもご記入ください。" class="input-area"></textarea>
+                                <textarea name="note" id="note" placeholder="妊娠・授乳中の方はお知らせください その他なんでもご記入ください " class="input-area"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -230,7 +230,7 @@
 
             document.getElementById('addFamilyButton').addEventListener('click', function(){
                 if (familyCount >= maxFamily) {
-                    alert('追加できる家族は最大' + maxFamily + '名までです。');
+                    alert('追加できる家族は最大' + maxFamily + '名までです ');
                     return;
                 }
                 familyCount++;
@@ -343,24 +343,24 @@
                 let errors = [];
 
                 // 必須チェック
-                if (!name) errors.push('お名前を入力してください。');
-                if (!zipcode) errors.push('郵便番号を入力してください。');
-                if (!address) errors.push('住所を入力してください。');
-                if (!tel) errors.push('電話番号を入力してください。');
-                if (!stay) errors.push('前泊予定を選択してください。');
-                if (!transfer) errors.push('送迎を選択してください。');
+                if (!name) errors.push('お名前を入力してください ');
+                if (!zipcode) errors.push('郵便番号を入力してください ');
+                if (!address) errors.push('住所を入力してください ');
+                if (!tel) errors.push('電話番号を入力してください ');
+                if (!stay) errors.push('前泊予定を選択してください ');
+                if (!transfer) errors.push('送迎を選択してください ');
 
                 // 引き出物に関するエラーチェックは削除
 
                 // 代表者アレルギーチェック
                 if (allergies.length === 0) {
-                    errors.push('代表者のアレルギーについて、いずれかを選択してください。');
+                    errors.push('代表者のアレルギーについて いずれかを選択してください ');
                 } else {
                     if (allergies.includes('アレルギーはありません') && allergies.length > 1) {
-                        errors.push('（代表者）「アレルギーはありません」を選択した場合、他のアレルギーは選択できません。');
+                        errors.push('（代表者）「アレルギーはありません」を選択した場合 他のアレルギーは選択できません ');
                     }
                     if (allergies.includes('__other_option__') && !otherAllergy) {
-                        errors.push('（代表者）「その他」を選択した場合は、その他アレルギー内容を入力してください。');
+                        errors.push('（代表者）「その他」を選択した場合は その他アレルギー内容を入力してください ');
                     }
                 }
 
@@ -375,13 +375,13 @@
                     // 名前がある場合はアレルギー必須
                     if (fname) {
                         if (fallergies.length === 0) {
-                            errors.push('ご家族' + i + '人目のお名前が入力されていますが、アレルギーが未選択です。');
+                            errors.push('ご家族' + i + '人目のお名前が入力されていますが アレルギーが未選択です ');
                         } else {
                             if (fallergies.includes('アレルギーはありません') && fallergies.length > 1) {
-                                errors.push('ご家族' + i + '人目：「アレルギーはありません」を選択した場合、他のアレルギーは選択できません。');
+                                errors.push('ご家族' + i + '人目：「アレルギーはありません」を選択した場合 他のアレルギーは選択できません ');
                             }
                             if (fallergies.includes('__other_option__') && !fotherAllergy) {
-                                errors.push('ご家族' + i + '人目：「その他」を選択した場合は、その他アレルギー内容を入力してください。');
+                                errors.push('ご家族' + i + '人目：「その他」を選択した場合は その他アレルギー内容を入力してください ');
                             }
                         }
                     }
@@ -411,9 +411,9 @@
 
                     if (!allergies.includes('アレルギーはありません') && allergies.includes('__other_option__') && otherAllergy) {
                         let displayAllergies = allergies.map(a => a === '__other_option__' ? otherAllergy : a);
-                        document.getElementById('confirmAllergies').innerText = displayAllergies.join('、');
+                        document.getElementById('confirmAllergies').innerText = displayAllergies.join(' ');
                     } else {
-                        document.getElementById('confirmAllergies').innerText = (allergies.length > 0) ? allergies.join('、') : 'なし';
+                        document.getElementById('confirmAllergies').innerText = (allergies.length > 0) ? allergies.join(' ') : 'なし';
                     }
 
                     document.getElementById('confirmCookingNote').innerText = cookingNote || 'なし';
@@ -426,7 +426,7 @@
                             if (!displayAllergies.includes('アレルギーはありません') && displayAllergies.includes('__other_option__') && f.otherAllergy) {
                                 displayAllergies = displayAllergies.map(a => a === '__other_option__' ? f.otherAllergy : a);
                             }
-                            familyHTML += '<p><strong>家族' + (idx+1) + ':</strong> ' + (f.name || '（名称未入力）') + '<br>アレルギー: ' + (displayAllergies.length > 0 ? displayAllergies.join('、') : 'なし') + '</p>';
+                            familyHTML += '<p><strong>家族' + (idx+1) + ':</strong> ' + (f.name || '（名称未入力）') + '<br>アレルギー: ' + (displayAllergies.length > 0 ? displayAllergies.join(' ') : 'なし') + '</p>';
                         }
                     });
                     if (!familyHTML) familyHTML = 'なし';
