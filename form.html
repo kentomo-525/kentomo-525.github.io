@@ -1,0 +1,366 @@
+<!-- form.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アンケートフォーム</title>
+    <!-- フォントやアイコンの読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- フォーム -->
+    <form id="surveyForm" class="c-form">
+        <div class="contact-bg">
+            <div class="contact-area inner">
+                <h1 class="title">アンケート</h1>
+                <p class="contact-message">
+                    以下のアンケートにご協力ください。<br>
+                    <span class="message-notice"><span class="essential">必須</span>は必須項目です。</span>
+                </p>
+                <div class="contact-inner">
+                    <!-- エラーメッセージ表示領域 -->
+                    <div id="errorMessages"></div>
+                    <table class="contact-table">
+                        <tr class="table-list">
+                            <th>
+                                <label for="name">お名前<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <input type="text" name="name" id="name" placeholder="例: 山田 太郎" class="input-area" required>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>
+                                <label for="zipcode">郵便番号<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <input type="text" name="zipcode" id="zipcode" placeholder="例: 123-4567" class="input-area" required>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>
+                                <label for="address">住所<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <input type="text" name="address" id="address" placeholder="住所をご入力ください" class="input-area" required>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>
+                                <!-- アレルギーも必須と明示 -->
+                                <label for="allergies">アレルギー<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <p>以下から該当するものを全てお選びください:</p>
+                                <label><input type="checkbox" name="allergies" value="アレルギーはありません">アレルギーはありません</label><br>
+                                <label><input type="checkbox" name="allergies" value="卵">卵</label><br>
+                                <label><input type="checkbox" name="allergies" value="乳">乳</label><br>
+                                <label><input type="checkbox" name="allergies" value="小麦">小麦</label><br>
+                                <label><input type="checkbox" name="allergies" value="そば">そば</label><br>
+                                <label><input type="checkbox" name="allergies" value="落花生">落花生</label><br>
+                                <label><input type="checkbox" name="allergies" value="えび">えび</label><br>
+                                <label><input type="checkbox" name="allergies" value="かに">かに</label><br>
+                                <label><input type="checkbox" name="allergies" value="__other_option__" id="otherOptionCheckbox">その他</label><br>
+                                <input type="text" name="otherAllergy" id="otherAllergy" placeholder="その他アレルギーがある場合はご記入ください" class="input-area" style="display:none;">
+                                
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const otherCheckbox = document.getElementById('otherOptionCheckbox');
+                                        const otherAllergyField = document.getElementById('otherAllergy');
+                                    
+                                        function toggleOtherField() {
+                                            if (otherCheckbox.checked) {
+                                                otherAllergyField.style.display = 'block';
+                                            } else {
+                                                otherAllergyField.style.display = 'none';
+                                                otherAllergyField.value = '';
+                                            }
+                                        }
+                                    
+                                        otherCheckbox.addEventListener('change', toggleOtherField);
+                                        toggleOtherField();
+                                    });
+                                </script>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>
+                                <label for="gift">引き出物選択<span class="essential">必須</span></label>
+                            </th>
+                            <td>
+                                <div class="gift-grid">
+                                    <div class="gift-card">
+                                        <label for="giftA" class="gift-label">
+                                            <input type="radio" name="gift" id="giftA" value="今治タオルセット" required>
+                                            <div class="gift-content">
+                                                <h3 class="gift-title">今治タオルセット</h3>
+                                                <img src="giftA.jpg" alt="今治タオルセット" class="gift-image">
+                                                <p class="gift-note">ふわふわの高品質タオル</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="gift-card">
+                                        <label for="giftB" class="gift-label">
+                                            <input type="radio" name="gift" id="giftB" value="瀬戸焼セット">
+                                            <div class="gift-content">
+                                                <h3 class="gift-title">瀬戸焼セット</h3>
+                                                <img src="giftB.jpg" alt="瀬戸焼セット" class="gift-image">
+                                                <p class="gift-note">伝統工芸の器セット</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="gift-card">
+                                        <label for="giftC" class="gift-label">
+                                            <input type="radio" name="gift" id="giftC" value="お肉のカタログギフト">
+                                            <div class="gift-content">
+                                                <h3 class="gift-title">お肉のカタログギフト</h3>
+                                                <img src="giftC.jpg" alt="お肉のカタログギフト" class="gift-image">
+                                                <p class="gift-note">選りすぐりのブランド肉</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="gift-card">
+                                        <label for="giftD" class="gift-label">
+                                            <input type="radio" name="gift" id="giftD" value="なんでもカタログギフト">
+                                            <div class="gift-content">
+                                                <h3 class="gift-title">なんでもカタログギフト</h3>
+                                                <img src="giftD.jpg" alt="なんでもカタログギフト" class="gift-image">
+                                                <p class="gift-note">多彩な品から選べます</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>
+                                <label for="note">備考</label>
+                            </th>
+                            <td>
+                                <textarea name="note" id="note" placeholder="自由記述欄" class="input-area"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- ボタン -->
+                    <div class="button-area">
+                        <button type="button" id="confirmButton" class="submit-button">確認する</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- 確認画面 -->
+    <div id="confirmArea" class="confirm-area" style="display: none;">
+        <div class="contact-bg">
+            <div class="contact-area inner">
+                <h1 class="title">入力内容の確認</h1>
+                <p class="contact-message">
+                    以下の内容で送信してよろしいですか？
+                </p>
+                <div class="contact-inner">
+                    <table class="contact-table">
+                        <tr class="table-list">
+                            <th>お名前</th>
+                            <td id="confirmName"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>郵便番号</th>
+                            <td id="confirmZipcode"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>住所</th>
+                            <td id="confirmAddress"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>アレルギー</th>
+                            <td id="confirmAllergies"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>引き出物選択</th>
+                            <td id="confirmGift"></td>
+                        </tr>
+                        <tr class="table-list">
+                            <th>備考</th>
+                            <td id="confirmNote"></td>
+                        </tr>
+                    </table>
+                    <!-- ボタン -->
+                    <div class="button-area">
+                        <button type="button" id="backButton" class="back-button">戻って修正</button>
+                        <button type="button" id="submitButton" class="submit-button">送信する</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- サンクスページへのリダイレクト設定 -->
+    <form id="hiddenForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSerppuex1O3qbWv__qlUvHfYkXyzZFNf_4hT3n1MOBEuqXylw/formResponse" method="POST" target="hidden_iframe" style="display: none;">
+        <input type="hidden" name="entry.2144289705" id="hiddenName">
+        <input type="hidden" name="entry.575672970" id="hiddenZipcode">
+        <input type="hidden" name="entry.823249746" id="hiddenAddress">
+        <div id="hiddenAllergiesContainer"></div>
+        <input type="hidden" name="entry.1146449488.other_option_response" id="hiddenOtherAllergy">
+        <input type="hidden" name="entry.1079425210" id="hiddenGift">
+        <input type="hidden" name="entry.1892194697" id="hiddenNote">
+    </form>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
+
+    <script>
+        let submitted = false;
+
+        document.getElementById('confirmButton').addEventListener('click', function() {
+            document.getElementById('errorMessages').innerHTML = '';
+
+            let name = document.getElementById('name').value.trim();
+            let zipcode = document.getElementById('zipcode').value.trim();
+            let address = document.getElementById('address').value.trim();
+            
+            let allergyElements = document.querySelectorAll('input[name="allergies"]:checked');
+            let allergies = Array.from(allergyElements).map(el => el.value);
+            let otherAllergy = document.getElementById('otherAllergy').value.trim();
+
+            let gift = document.querySelector('input[name="gift"]:checked');
+            let note = document.getElementById('note').value.trim();
+
+            let errors = [];
+
+            // お名前バリデーション: 姓と名の間に半角スペース必須
+            let nameParts = name.split(' ');
+            if (!name) {
+                errors.push('お名前を入力してください。');
+            } else if (nameParts.length < 2) {
+                errors.push('お名前は姓と名の間に半角スペースを入れてください。（例: "山田 太郎"）');
+            }
+
+            // 郵便番号バリデーション: 123-4567 形式
+            let zipcodePattern = /^\d{3}-\d{4}$/;
+            if (!zipcode) {
+                errors.push('郵便番号を入力してください。');
+            } else if (!zipcodePattern.test(zipcode)) {
+                errors.push('郵便番号は3桁-4桁の形式で入力してください。（例: "123-4567"）');
+            }
+
+            if (!address) {
+                errors.push('住所を入力してください。');
+            }
+
+            if (!gift) {
+                errors.push('引き出物を選択してください。');
+            }
+
+            // アレルギーバリデーション
+            if (allergies.length === 0) {
+                errors.push('アレルギーについて、いずれかを選択してください。');
+            } else {
+                if (allergies.includes('アレルギーはありません') && allergies.length > 1) {
+                    errors.push('「アレルギーはありません」を選択した場合、他のアレルギーは選択できません。');
+                }
+
+                // その他が選択されている場合、テキスト必須
+                if (allergies.includes('__other_option__') && !otherAllergy) {
+                    errors.push('「その他」を選択した場合は、その他アレルギー内容を入力してください。');
+                }
+            }
+
+            if (errors.length > 0) {
+                let errorHTML = '';
+                errors.forEach(function(error) {
+                    errorHTML += '<p class="error-message">' + error + '</p>';
+                });
+                document.getElementById('errorMessages').innerHTML = errorHTML;
+                document.getElementById('errorMessages').scrollIntoView({behavior: 'smooth'});
+            } else {
+                // その他オプション処理
+                if (!allergies.includes('アレルギーはありません') && allergies.includes('__other_option__')) {
+                    allergies = allergies.filter(a => a !== '__other_option__');
+                    if (otherAllergy) {
+                        allergies.push(otherAllergy);
+                    }
+                } else {
+                    // __other_option__があれば除去
+                    allergies = allergies.filter(a => a !== '__other_option__');
+                }
+
+                document.getElementById('confirmName').innerText = name;
+                document.getElementById('confirmZipcode').innerText = zipcode;
+                document.getElementById('confirmAddress').innerText = address;
+                document.getElementById('confirmAllergies').innerText = (allergies.length > 0) ? allergies.join('、') : 'なし';
+                document.getElementById('confirmGift').innerText = gift.value;
+                document.getElementById('confirmNote').innerText = note ? note : 'なし';
+
+                document.getElementById('surveyForm').style.display = 'none';
+                document.getElementById('confirmArea').style.display = 'block';
+            }
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            document.getElementById('confirmArea').style.display = 'none';
+            document.getElementById('surveyForm').style.display = 'block';
+        });
+
+        document.getElementById('submitButton').addEventListener('click', function() {
+            submitted = true;
+
+            // 送信前にhiddenAllergiesContainerをクリア
+            document.getElementById('hiddenAllergiesContainer').innerHTML = '';
+
+            document.getElementById('hiddenName').value = document.getElementById('name').value.trim();
+            document.getElementById('hiddenZipcode').value = document.getElementById('zipcode').value.trim();
+            document.getElementById('hiddenAddress').value = document.getElementById('address').value.trim();
+
+            let allergyElements = document.querySelectorAll('input[name="allergies"]:checked');
+            let otherAllergyValue = document.getElementById('otherAllergy').value.trim();
+
+            let hasOther = false;
+            let hasNoAllergy = false;
+            allergyElements.forEach(function(el){
+                if (el.value === '__other_option__') {
+                    hasOther = true;
+                } else if (el.value === 'アレルギーはありません') {
+                    hasNoAllergy = true;
+                } else {
+                    // その他以外の選択肢
+                    let hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'entry.1146449488';
+                    hiddenInput.value = el.value;
+                    document.getElementById('hiddenAllergiesContainer').appendChild(hiddenInput);
+                }
+            });
+
+            if (hasNoAllergy) {
+                let noAllergyInput = document.createElement('input');
+                noAllergyInput.type = 'hidden';
+                noAllergyInput.name = 'entry.1146449488';
+                noAllergyInput.value = 'アレルギーはありません';
+                document.getElementById('hiddenAllergiesContainer').appendChild(noAllergyInput);
+
+                document.getElementById('hiddenOtherAllergy').value = '';
+            } else {
+                if (hasOther) {
+                    let otherOptionInput = document.createElement('input');
+                    otherOptionInput.type = 'hidden';
+                    otherOptionInput.name = 'entry.1146449488';
+                    otherOptionInput.value = '__other_option__';
+                    document.getElementById('hiddenAllergiesContainer').appendChild(otherOptionInput);
+
+                    document.getElementById('hiddenOtherAllergy').value = otherAllergyValue;
+                } else {
+                    document.getElementById('hiddenOtherAllergy').value = '';
+                }
+            }
+
+            document.getElementById('hiddenGift').value = document.querySelector('input[name="gift"]:checked').value;
+            document.getElementById('hiddenNote').value = document.getElementById('note').value.trim();
+
+            document.getElementById('hiddenForm').submit();
+        });
+    </script>
+</body>
+</html>

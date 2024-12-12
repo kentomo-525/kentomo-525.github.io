@@ -1,168 +1,56 @@
+<!-- entrance.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>アンケートフォーム</title>
-    <!-- フォントやアイコンの読み込み -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <title>披露宴アンケート</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="contact-bg">
+        <div class="contact-area inner">
+            <h1 class="title">Welcome !!</h1>
+            <p class="contact-message">
+                これより、アンケートへのご協力をお願いいたします。<br>
+                We kindly ask for your cooperation with the questionnaire.<br><br>
+                下のボタンをクリックしてアンケートページへお進みください。<br>
+                Please click one of the buttons below to proceed.<br>
+            </p>
 
-    <!-- フォーム -->
-    <form id="surveyForm" class="c-form">
-        <div class="contact-bg">
-            <div class="contact-area inner">
-                <h1 class="title">アンケート</h1>
-                <p class="contact-message">
-                    以下のアンケートにご協力ください。<br>
-                    <span class="message-notice"><span class="essential">必須</span>は必須項目です。</span>
-                </p>
-                <div class="contact-inner">
-                    <!-- エラーメッセージ表示領域 -->
-                    <div id="errorMessages"></div>
-                    <table class="contact-table">
-                        <tr class="table-list">
-                            <th>
-                                <label for="name">お名前<span class="essential">必須</span></label>
-                            </th>
-                            <td>
-                                <input type="text" name="name" id="name" placeholder="お名前をご入力ください" class="input-area" required>
-                            </td>
-                        </tr>
-                        <tr class="table-list">
-                            <th>
-                                <label for="address">住所<span class="essential">必須</span></label>
-                            </th>
-                            <td>
-                                <input type="text" name="address" id="address" placeholder="住所をご入力ください" class="input-area" required>
-                            </td>
-                        </tr>
-                        <tr class="table-list">
-                            <th>
-                                <label for="gift">引き出物選択<span class="essential">必須</span></label>
-                            </th>
-                            <td>
-                                <input type="radio" name="gift" id="giftA" value="引き出物A"> <label for="giftA">引き出物A</label><br>
-                                <input type="radio" name="gift" id="giftB" value="引き出物B"> <label for="giftB">引き出物B</label><br>
-                                <input type="radio" name="gift" id="giftC" value="引き出物C"> <label for="giftC">引き出物C</label>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- ボタン -->
-                    <div class="button-area">
-                        <button type="button" id="confirmButton" class="submit-button">確認する</button>
-                    </div>
-                </div>
+            <!-- スライドショーエリア -->
+            <div class="slideshow-container">
+                <img src="giftA.jpg" class="slideshow-image active">
+                <img src="giftB.jpg" class="slideshow-image">
+                <img src="giftC.jpg" class="slideshow-image">
+                <img src="giftB.jpg" class="slideshow-image">
+                <img src="giftD.jpg" class="slideshow-image">
             </div>
-        </div>
-    </form>
 
-    <!-- 確認画面 -->
-    <div id="confirmArea" class="confirm-area" style="display: none;">
-        <div class="contact-bg">
-            <div class="contact-area inner">
-                <h1 class="title">入力内容の確認</h1>
-                <p class="contact-message">
-                    以下の内容で送信してよろしいですか？
-                </p>
-                <div class="contact-inner">
-                    <table class="contact-table">
-                        <tr class="table-list">
-                            <th>お名前</th>
-                            <td id="confirmName"></td>
-                        </tr>
-                        <tr class="table-list">
-                            <th>住所</th>
-                            <td id="confirmAddress"></td>
-                        </tr>
-                        <tr class="table-list">
-                            <th>引き出物選択</th>
-                            <td id="confirmGift"></td>
-                        </tr>
-                    </table>
-                    <!-- ボタン -->
-                    <div class="button-area">
-                        <button type="button" id="backButton" class="back-button">戻って修正</button>
-                        <button type="button" id="submitButton" class="submit-button">送信する</button>
-                    </div>
-                </div>
+            <div class="contact-inner" style="text-align: center; margin-top: 50px;">
+                <a href="form.html" class="submit-button">スタート (日本語)</a>
+                <a href="form-english.html" class="submit-button">Start (English)</a>
+                <a href="form.html" class="submit-button-fam">親戚の方はこちら</a>
             </div>
         </div>
     </div>
 
-    <!-- サンクスページへのリダイレクト設定 -->
-    <form id="hiddenForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSerppuex1O3qbWv__qlUvHfYkXyzZFNf_4hT3n1MOBEuqXylw/formResponse" method="POST" target="hidden_iframe" style="display: none;">
-        <input type="hidden" name="entry.2144289705" id="hiddenName">
-        <input type="hidden" name="entry.823249746" id="hiddenAddress">
-        <input type="hidden" name="entry.1079425210" id="hiddenGift">
-    </form>
-
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
-
-    <!-- スクリプト -->
     <script>
-        let submitted = false;
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName('slideshow-image');
 
-        document.getElementById('confirmButton').addEventListener('click', function() {
-            // エラーメッセージのクリア
-            document.getElementById('errorMessages').innerHTML = '';
-
-            // フォームの値を取得
-            let name = document.getElementById('name').value.trim();
-            let address = document.getElementById('address').value.trim();
-            let gift = document.querySelector('input[name="gift"]:checked');
-
-            let errors = [];
-
-            // バリデーションチェック
-            if (!name) {
-                errors.push('お名前を入力してください。');
+        function showSlides() {
+            // すべてのスライドからactiveクラスを除去
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
             }
-            if (!address) {
-                errors.push('住所を入力してください。');
-            }
-            if (!gift) {
-                errors.push('引き出物を選択してください。');
-            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            // 現在のスライドにactiveクラスを付与
+            slides[slideIndex-1].classList.add('active');
+            setTimeout(showSlides, 3000); // 3秒ごとに切り替え
+        }
 
-            if (errors.length > 0) {
-                // エラーメッセージを表示
-                let errorHTML = '';
-                errors.forEach(function(error) {
-                    errorHTML += '<p class="error-message">' + error + '</p>';
-                });
-                document.getElementById('errorMessages').innerHTML = errorHTML;
-                // 最初のエラー箇所へスクロール
-                document.getElementById('errorMessages').scrollIntoView({behavior: 'smooth'});
-            } else {
-                // 確認画面に値を表示
-                document.getElementById('confirmName').innerText = name;
-                document.getElementById('confirmAddress').innerText = address;
-                document.getElementById('confirmGift').innerText = gift.value;
-
-                // フォームを非表示、確認画面を表示
-                document.getElementById('surveyForm').style.display = 'none';
-                document.getElementById('confirmArea').style.display = 'block';
-            }
-        });
-
-        document.getElementById('backButton').addEventListener('click', function() {
-            // 確認画面を非表示、フォームを表示
-            document.getElementById('confirmArea').style.display = 'none';
-            document.getElementById('surveyForm').style.display = 'block';
-        });
-
-        document.getElementById('submitButton').addEventListener('click', function() {
-            // hiddenFormに値をセット
-            document.getElementById('hiddenName').value = document.getElementById('name').value.trim();
-            document.getElementById('hiddenAddress').value = document.getElementById('address').value.trim();
-            document.getElementById('hiddenGift').value = document.querySelector('input[name="gift"]:checked').value;
-
-            // フォームを送信
-            submitted = true;
-            document.getElementById('hiddenForm').submit();
-        });
+        showSlides();
     </script>
 </body>
 </html>
