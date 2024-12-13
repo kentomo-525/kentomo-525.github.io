@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
     <title>アンケートフォーム</title>
     <!-- フォントやアイコンの読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -24,27 +25,27 @@
                     <div id="errorMessages"></div>
                     <table class="contact-table">
                         <tr class="table-list">
-                            <th><label for="name">お名前<span class="essential">必須</span></label></th>
+                            <th><label for="name">お名前 <br class="ps-br"><span class="essential">必須</span></label></th>
                             <td><input type="text" name="name" id="name" placeholder="例: 山田 太郎" class="input-area" required></td>
                         </tr>
                         <tr class="table-list">
-                            <th><label for="zipcode">郵便番号<span class="essential">必須</span></label></th>
+                            <th><label for="zipcode">郵便番号 <br class="ps-br"><span class="essential">必須</span></label></th>
                             <td><input type="text" name="zipcode" id="zipcode" placeholder="例: 123-4567" class="input-area" required></td>
                         </tr>
                         <tr class="table-list">
-                            <th><label for="address">住所<span class="essential">必須</span></label></th>
+                            <th><label for="address">住所 <br class="ps-br"><span class="essential">必須</span></label></th>
                             <td><input type="text" name="address" id="address" placeholder="住所をご入力ください" class="input-area" required></td>
                         </tr>
                         <tr class="table-list">
-                            <th><label for="tel">電話番号<span class="essential">必須</span></label></th>
+                            <th><label for="tel">電話番号 <br class="ps-br"><span class="essential">必須</span></label></th>
                             <td><input type="text" name="tel" id="tel" placeholder="例: 03-1234-5678" class="input-area" required></td>
                         </tr>
 
                         <!-- 前泊予定（必須） -->
                         <tr class="table-list">
-                            <th>前泊予定<span class="essential">必須</span></th>
+                            <th>前泊予定 <br class="ps-br"><span class="essential">必須</span></th>
                             <td>
-                                <p class="note">現時点でのご予定で結構です </p>
+                                <p class="note">現時点でのご予定で結構です<br>なお提携ホテルはありません<br>申し訳ないですが ご自身でご準備をお願いします</p>
                                 <label><input type="radio" name="stay" value="あり">あり</label><br>
                                 <label><input type="radio" name="stay" value="なし">なし</label>
                             </td>
@@ -52,7 +53,7 @@
 
                         <!-- 送迎（必須） -->
                         <tr class="table-list">
-                            <th>送迎<span class="essential">必須</span></th>
+                            <th>送迎 <br class="ps-br"><span class="essential">必須</span></th>
                             <td>
                                 <p class="note">現時点でのご予定で結構です <br>送迎は「広島駅〜会場の往復」を想定しています </p>
                                 <label><input type="radio" name="transfer" value="希望する">希望する</label><br>
@@ -64,9 +65,9 @@
 
                         <!-- 代表者アレルギー -->
                         <tr class="table-list">
-                            <th><label for="allergies">アレルギー(代表者)<span class="essential">必須</span></label></th>
+                            <th><label for="allergies">アレルギー(代表者) <br class="ps-br"><span class="essential">必須</span></label></th>
                             <td>
-                                <p>該当するものを全てお選びください:</p>
+                                <p class="note">該当するものを全てお選びください:</p>
                                 <label><input type="checkbox" name="allergies" value="アレルギーはありません">アレルギーはありません</label><br>
                                 <label><input type="checkbox" name="allergies" value="卵">卵</label><br>
                                 <label><input type="checkbox" name="allergies" value="乳">乳</label><br>
@@ -76,7 +77,7 @@
                                 <label><input type="checkbox" name="allergies" value="えび">えび</label><br>
                                 <label><input type="checkbox" name="allergies" value="かに">かに</label><br>
                                 <label><input type="checkbox" name="allergies" value="__other_option__" id="otherOptionCheckbox">その他</label><br>
-                                <input type="text" name="otherAllergy" id="otherAllergy" placeholder="その他アレルギーがある場合はご記入ください" class="input-area" style="display:none;">
+                                <input type="text" name="otherAllergy" id="otherAllergy" placeholder="その他アレルギーをご記入ください" class="input-area" style="display:none;">
                             </td>
                         </tr>
                     </table>
@@ -85,21 +86,21 @@
                     <div id="familyContainer"></div>
 
                     <!-- 家族追加ボタン -->
-                    <div class="button-area" style="margin-top:20px;">
+                    <div class="button-area">
                         <button type="button" id="addFamilyButton" class="submit-button">家族をひとり追加する</button>
                     </div>
 
-                    <table class="contact-table" style="margin-top:20px;">
+                    <table class="contact-table"  style="margin-top:20px; margin-bottom: 20px;">
                         <tr class="table-list">
                             <th><label for="cookingNote">料理について</label></th>
                             <td>
-                                <textarea name="cookingNote" id="cookingNote" placeholder="例: 肉はよく焼き希望 トマトは苦手です など" class="input-area"></textarea>
+                                <textarea name="cookingNote" id="cookingNote" rows="5" placeholder="例: 肉はよく焼き希望 トマトは苦手です など" class="input-area"></textarea>
                             </td>
                         </tr>
                         <tr class="table-list">
                             <th><label for="note">備考</label></th>
                             <td>
-                                <textarea name="note" id="note" placeholder="妊娠・授乳中の方はお知らせください その他なんでもご記入ください " class="input-area"></textarea>
+                                <textarea name="note" id="note" rows="5" placeholder="妊娠・授乳中の方はお知らせください その他なんでもご記入ください " class="input-area"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -117,7 +118,7 @@
     <div id="confirmArea" class="confirm-area" style="display: none;">
         <div class="contact-bg">
             <div class="contact-area inner">
-                <h1 class="title">入力内容の確認</h1>
+                <h1 class="title">内容確認</h1>
                 <p class="contact-message">
                     以下の内容で送信してよろしいですか？
                 </p>
@@ -306,7 +307,7 @@
                 otherAllergyInput.name = 'otherAllergyFam' + familyCount;
                 otherAllergyInput.classList.add('input-area');
                 otherAllergyInput.classList.add('otherAllergyInput');
-                otherAllergyInput.placeholder = 'その他アレルギーがある場合はご記入ください';
+                otherAllergyInput.placeholder = 'その他アレルギーをご記入ください';
                 otherAllergyInput.style.display = 'none';
 
                 allergyTd.appendChild(otherAllergyInput);

@@ -10,6 +10,8 @@ body {
     font-family: 'Pacifico', cursive;
     color: #ff69b4;
     text-align: center;
+    font-size: 50pt;
+    margin: 0%;
 }
 
 .contact-bg {
@@ -33,6 +35,8 @@ body {
 .contact-message {
     text-align: center;
     color: #555;
+    margin-top: 20pt;
+    margin-bottom: 20pt;
 }
 
 .contact-inner {
@@ -97,82 +101,8 @@ body {
 .note {
     font-size: 14px;
     color: #555;
-    margin-bottom: 5px;
-}
-
-.gift-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.gift-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    position: relative;
-    background-color: #fff;
-    transition: box-shadow 0.3s ease;
-}
-
-.gift-card:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.gift-label {
-    display: block;
-    cursor: pointer;
-    text-align: center;
-}
-
-.gift-label input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.gift-label input[type="radio"]:focus + .gift-content,
-.gift-label input[type="radio"]:checked + .gift-content {
-    outline: 2px solid #ff69b4; 
-}
-
-.gift-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.gift-title {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.gift-image {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.gift-note {
-    font-size: 14px;
-    color: #555;
-}
-
-@media screen and (max-width: 480px) {
-    .contact-area {
-        width: 95%;
-    }
-    .submit-button, .back-button {
-        width: 90%;
-        margin: 10px 5%;
-    }
-    .gift-grid {
-        grid-template-columns: 1fr; 
-    }
+    margin-bottom: 3px;
+    margin-top: 0px;
 }
 
 /* 家族情報を区切り線や太字で強調 */
@@ -187,12 +117,6 @@ hr {
     text-align: center;
     font-size: 16px;
     border-radius: 5px;
-}
-
-/* family-section用のスタイル（必要に応じて調整） */
-.family-section {
-    border-left: 3px solid #ff69b4;
-    background-color: #fffafc;
 }
 
 .slideshow-container {
@@ -236,14 +160,12 @@ hr {
     background-color: #0037ff;
 }
 
-/* 画像コンテナ設定 */
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 画像スタイル */
 .image_show {
     max-width: 100%;
     height: auto;
@@ -252,3 +174,182 @@ hr {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
+
+.ps-br {
+    display: none;
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 767px) {
+    body {
+        font-family: 'Noto Sans JP', sans-serif;
+        background-color: #fff0f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .contact-bg {
+        background-image: url('background.jpeg');
+        background-size: contain; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+        background-attachment: fixed; 
+        padding: 50px 0;
+    }
+
+    .contact-area {
+        max-width: 767px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .contact-message {
+        text-align: center;
+        color: #555;
+        margin-top: 10pt;
+        margin-bottom: 10pt;
+    }
+
+    .contact-inner {
+        margin-top: 0px;
+        font-size: 10pt;
+    }
+
+    .contact-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-list th, .table-list td {
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    .table-list th {
+        width: 30%;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .input-area {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .submit-button, .back-button {
+        display: inline-block;
+        width: 50%;
+        margin: 10px 2.5%;
+        padding: 10px;
+        background-color: #ff69b4;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .submit-button:hover, .back-button:hover {
+        background-color: #ff1493;
+    }
+
+    .essential {
+        color: red;
+        font-size: 14px;
+    }
+
+    .error-message {
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .button-area {
+        text-align: center;
+    }
+
+    .note {
+        font-size: 12px;
+        color: #555;
+        margin-bottom: 3px;
+        margin-top: 0px;
+    }
+
+    /* 家族情報を区切り線や太字で強調 */
+    hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+    }
+
+    .table-list th[colspan="2"] {
+        background-color: #f2f2f2;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        margin: 0;
+    }
+
+    .slideshow-image {
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        max-width: 100%;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity 1s ease; /* フェードアニメーション */
+    }
+
+    .slideshow-image.active {
+        opacity: 1;
+    }
+
+    .submit-button-fam {
+        display: inline-block;
+        width: 50%;
+        margin: 10px 2.5%;
+        padding: 10px;
+        background-color: #48a1f4;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .submit-button-fam:hover, .back-button:hover {
+        background-color: #0037ff;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image_show {
+        max-width: 100%;
+        height: auto;
+        max-height: 400pt;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .ps-br {
+        display: block;
+    }
+}
+
